@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réseaux Tube — réviser le TSRS : technicien supérieur réseaux & sécurité</title>
+<meta name="description" content="La bibliothèque de vidéos pour réviser le TSRS — technicien supérieur réseaux et sécurité. Classée à la main, par bloc de compétences. Zéro algorithme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF6EC; --paper2:#F4ECDC; --ink:#16213C; --ink2:#46506B;
+  --line:#E2D6BF; --card:#FFFDF8;
+  --fr:#0E7490; --ma:#23618F; --sc:#31825A; --hi:#9B5320; --ge:#1F7A6C;
+  --em:#65489B; --an:#B93A73; --ar:#C98A12; --nu:#37496B;
+  --shadow:4px 4px 0 var(--ink);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.55;
+  background-image:radial-gradient(#00000008 1px, transparent 1px);background-size:22px 22px}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font-family:inherit}
+
+/* ---------- TOP BAR ---------- */
+.top{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:18px;padding:12px 22px;
+  background:rgba(251,246,236,.92);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink)}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;white-space:nowrap}
+.brand .mark{width:34px;height:34px;border:2px solid var(--ink);border-radius:9px;display:grid;place-items:center;background:var(--ink);color:var(--paper);font-size:17px;box-shadow:2px 2px 0 var(--fr)}
+.brand small{display:block;font-family:Inter,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.search{flex:1;min-width:0;max-width:430px;position:relative}
+.search input{width:100%;padding:10px 14px 10px 38px;border:2px solid var(--ink);border-radius:999px;background:var(--card);
+  font-size:14.5px;color:var(--ink);outline:none;transition:box-shadow .15s}
+.search input:focus{box-shadow:3px 3px 0 var(--ma)}
+.search::before{content:"🔍";position:absolute;left:12px;top:50%;transform:translateY(-52%);font-size:14px;opacity:.65;pointer-events:none}
+.noalgo{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.noalgo b{color:var(--fr)}
+
+/* ---------- HERO ---------- */
+.hero{padding:56px 22px 34px;max-width:1240px;margin:0 auto;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);padding:6px 13px;border-radius:999px}
+.hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(38px,6.4vw,74px);line-height:.98;letter-spacing:-.045em;margin:20px 0 0;font-weight:800;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--fr);position:relative;display:inline-block;
+  background-image:linear-gradient(180deg,transparent 58%,rgba(242,183,5,.55) 58%,rgba(242,183,5,.55) 88%,transparent 88%)}
+.hero p.lead{font-size:17.5px;max-width:56ch;color:var(--ink2);margin:20px 0 0}
+.hero .hand{font-family:Caveat,cursive;font-size:23px;color:var(--ma);transform:rotate(-2deg);display:inline-block;margin-top:16px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.stat{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:10px 16px;box-shadow:3px 3px 0 var(--ink)}
+.stat b{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;letter-spacing:-.03em;display:block;line-height:1}
+.stat span{font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2);font-weight:600}
+
+/* ---------- FILTERS ---------- */
+.filters{position:sticky;top:63px;z-index:50;background:rgba(244,236,220,.96);backdrop-filter:blur(8px);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.levels,.mats{max-width:1240px;margin:0 auto;padding:0 22px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.levels::-webkit-scrollbar,.mats::-webkit-scrollbar{display:none}
+.levels{padding-top:10px;padding-bottom:8px}
+.mats{padding-bottom:10px}
+.lvbtn{flex:0 0 auto;border:2px solid var(--ink);background:var(--card);border-radius:11px;padding:7px 16px;font-weight:700;font-size:14.5px;cursor:pointer;
+  box-shadow:2px 2px 0 var(--ink);transition:.12s;display:flex;flex-direction:column;align-items:center;min-width:64px}
+.lvbtn small{font-size:9.5px;font-weight:600;letter-spacing:.06em;color:var(--ink2);text-transform:uppercase}
+.lvbtn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+.lvbtn.on{background:var(--ink);color:var(--paper)}
+.lvbtn.on small{color:#C9CFE0}
+.matbtn{flex:0 0 auto;border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:6px 13px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink2);
+  display:flex;align-items:center;gap:6px}
+.matbtn .dot{width:8px;height:8px;border-radius:50%}
+.matbtn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.matbtn.on .dot{box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+
+/* ---------- CONTENT ---------- */
+main{max-width:1240px;margin:0 auto;padding:8px 22px 60px}
+.lvhead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:34px 0 6px;flex-wrap:wrap}
+.lvhead h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.035em;margin:0}
+.lvhead .sub{color:var(--ink2);font-size:14px;max-width:62ch;margin:4px 0 0}
+.progwrap{min-width:190px}
+.progwrap .t{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);display:flex;justify-content:space-between;gap:10px}
+.bar{height:9px;border:1.5px solid var(--ink);border-radius:999px;background:var(--card);overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;background:var(--sc);width:0;transition:width .3s}
+
+.matsec{margin-top:38px}
+.matsec>header{display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:2.5px solid var(--ink);margin-bottom:6px;flex-wrap:wrap}
+.matsec .ico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:19px;border:2px solid var(--ink);color:#fff;box-shadow:2px 2px 0 var(--ink)}
+.matsec h3{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;margin:0;letter-spacing:-.02em}
+.matsec .att{font-size:13.5px;color:var(--ink2);margin:2px 0 0;max-width:70ch}
+.matsec .n{margin-left:auto;font-size:12px;font-weight:700;color:var(--ink2);background:var(--paper2);border:1.5px solid var(--line);padding:4px 10px;border-radius:999px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:16px;margin-top:16px}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:15px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;
+  transition:transform .14s,box-shadow .14s;box-shadow:2px 2px 0 rgba(22,33,60,.16)}
+.card:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.card.seen{opacity:.62}
+.card.seen .thumb::after{content:"VU";position:absolute;inset:0;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:26px;letter-spacing:.2em;color:#fff;background:rgba(22,33,60,.55)}
+.thumb{position:relative;aspect-ratio:16/9;background:var(--paper2);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-size:30px}
+.dur{position:absolute;right:7px;bottom:7px;background:var(--ink);color:var(--paper);font-size:11px;font-weight:700;padding:2px 6px;border-radius:5px;letter-spacing:.02em}
+.play{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:.15s;background:linear-gradient(0deg,rgba(22,33,60,.35),rgba(22,33,60,.05))}
+.card:hover .play{opacity:1}
+.play span{width:48px;height:48px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:17px;padding-left:4px;border:2px solid var(--ink)}
+.seenbtn{position:absolute;left:7px;top:7px;width:27px;height:27px;border-radius:50%;border:2px solid #fff;background:rgba(22,33,60,.55);color:#fff;font-size:13px;
+  cursor:pointer;display:grid;place-items:center;z-index:3}
+.seenbtn:hover{background:var(--sc);border-color:var(--sc)}
+.card.seen .seenbtn{background:var(--sc);border-color:var(--sc)}
+.body{padding:11px 13px 13px;display:flex;flex-direction:column;gap:5px;flex:1}
+.thm{font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink2)}
+.card h4{font-size:14.5px;line-height:1.32;margin:0;font-weight:600;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.meta{margin-top:auto;display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink2);padding-top:6px}
+.meta .ch{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%}
+.meta .lvls{margin-left:auto;display:flex;gap:3px}
+.meta .lvls i{font-style:normal;font-size:9.5px;font-weight:700;border:1px solid var(--line);border-radius:4px;padding:1px 4px;background:var(--paper2)}
+.empty{padding:60px 0;text-align:center;color:var(--ink2)}
+.empty b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;color:var(--ink)}
+
+/* ---------- PROGRAMME ---------- */
+.panel{margin:70px 0 0;border:2.5px solid var(--ink);border-radius:20px;background:var(--card);overflow:hidden;box-shadow:6px 6px 0 var(--ink)}
+.panel>header{padding:24px 26px 18px;border-bottom:2px solid var(--ink);background:var(--paper2)}
+.panel>header .kicker{background:var(--fr);color:#fff}
+.panel>header h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.2vw,34px);margin:12px 0 4px;letter-spacing:-.03em}
+.panel>header p{margin:0;color:var(--ink2);font-size:14.5px;max-width:75ch}
+.progtable{width:100%;border-collapse:collapse;font-size:14px}
+.progtable th{text-align:left;padding:11px 16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);border-bottom:1.5px solid var(--line);background:var(--paper)}
+.progtable td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+.progtable tr:last-child td{border-bottom:none}
+.progtable td.m{font-weight:700;white-space:nowrap}
+.progtable ul{margin:0;padding-left:16px}
+.progtable li{margin:2px 0}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--paper2);border:1px solid var(--line)}
+
+/* ---------- CHAINES ---------- */
+.chans{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:13px;padding:22px 26px 26px}
+.chan{border:2px solid var(--ink);border-radius:13px;padding:13px 15px;background:var(--card);text-decoration:none;transition:.14s;display:block}
+.chan:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.chan b{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;display:block;letter-spacing:-.02em}
+.chan span{font-size:12.5px;color:var(--ink2);display:block;margin-top:3px}
+.chan em{font-style:normal;font-size:11px;font-weight:700;color:var(--ma);letter-spacing:.05em;text-transform:uppercase}
+
+/* ---------- METHODE ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;padding:22px 26px 26px}
+.step{border-left:4px solid var(--ar);padding:4px 0 4px 14px}
+.step b{font-family:'Bricolage Grotesque',sans-serif;font-size:15.5px;display:block;letter-spacing:-.01em}
+.step span{font-size:13.5px;color:var(--ink2)}
+
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:18px;background:rgba(16,22,40,.82);backdrop-filter:blur(6px)}
+.modal.open{display:grid}
+.mbox{width:min(920px,100%);background:var(--paper);border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:8px 8px 0 rgba(0,0,0,.35);max-height:94vh;display:flex;flex-direction:column}
+.mtop{display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:2px solid var(--ink);background:var(--paper2)}
+.mtop .t{font-weight:700;font-size:14.5px;line-height:1.25;flex:1;letter-spacing:-.01em}
+.mtop button{border:2px solid var(--ink);background:var(--card);border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:15px;font-weight:700}
+.mtop button:hover{background:var(--ink);color:var(--paper)}
+.video{aspect-ratio:16/9;background:#000}
+.video iframe{width:100%;height:100%;border:0;display:block}
+.mbot{display:flex;align-items:center;gap:12px;padding:11px 15px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
+.mbot a{font-weight:600;color:var(--ma)}
+.mbot .seen2{margin-left:auto;border:2px solid var(--ink);border-radius:8px;padding:6px 12px;background:var(--card);cursor:pointer;font-weight:700;font-size:12.5px}
+.mbot .seen2.on{background:var(--sc);color:#fff;border-color:var(--sc)}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:2px solid var(--ink);background:var(--paper2);padding:30px 22px;font-size:13px;color:var(--ink2)}
+footer .inner{max-width:1240px;margin:0 auto;display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
+footer b{color:var(--ink)}
+
+@media(max-width:760px){
+  .filters{top:57px}
+  .noalgo{display:none}
+  .top{padding:9px 14px;gap:10px}
+  .brand{font-size:15.5px;letter-spacing:-.03em}
+  .brand small{display:none}
+  .brand .mark{width:29px;height:29px;font-size:14px;border-radius:8px}
+  .search input{font-size:13px;padding:8px 10px 8px 30px}
+  .search::before{left:10px;font-size:12px}
+  .hero{padding-top:34px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+  .card h4{font-size:13px}
+  .panel{box-shadow:4px 4px 0 var(--ink);border-radius:14px}
+  .progtable{font-size:12.5px}
+  .progtable td,.progtable th{padding:9px 10px}
+}
+@media print{
+  .top,.filters,.hero .stats,.play,.seenbtn,.modal,footer{display:none!important}
+  body{background:#fff}
+  .card{break-inside:avoid;box-shadow:none;border:1px solid #999}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  a{text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><span class="mark">R</span><span>RÉSEAUX TUBE<small>TSRS · à la main</small></span></div>
+  <div class="search"><input id="q" type="search" placeholder="Chercher : le VLAN, Active Directory, le pare-feu…" autocomplete="off"></div>
+  <div class="noalgo"><span>Classement <b>100 % humain</b></span> · <span id="seenPct">0 % vu</span></div>
+</header>
+
+<section class="hero">
+  <div class="kicker">📺 Technicien supérieur réseaux & sécurité, bloc par bloc</div>
+  <h1>Toutes les vidéos pour réviser. <em>Classées à la main.</em></h1>
+  <p class="lead">Pas de fil de recommandation, pas de Shorts qui défilent, pas de « tu pourrais aussi aimer ». Chaque vidéo répond à <strong>un point précis du référentiel</strong> — OSI, VLAN, Active Directory, pare-feu, supervision — et elle est rangée à sa place.</p>
+  <div class="hand">→ on regarde ce qui bloque, puis on le refait sur son labo.</div>
+  <div class="stats">
+    <div class="stat"><b id="sVid">—</b><span>vidéos vérifiées</span></div>
+    <div class="stat"><b id="sCh">—</b><span>chaînes retenues</span></div>
+    <div class="stat"><b id="sTh">—</b><span>points du programme</span></div>
+    <div class="stat"><b>0</b><span>algorithme</span></div>
+  </div>
+</section>
+
+<div class="filters">
+  <div class="levels" id="levels"></div>
+  <div class="mats" id="mats"></div>
+</div>
+
+<main>
+  <div class="lvhead">
+    <div>
+      <h2 id="lvTitle">CP</h2>
+      <p class="sub" id="lvSub"></p>
+    </div>
+    <div class="progwrap">
+      <div class="t"><span>Vidéos vues</span><span id="progTxt">0 / 0</span></div>
+      <div class="bar"><i id="progBar"></i></div>
+    </div>
+  </div>
+  <div id="list"></div>
+
+  <section class="panel" id="programme">
+    <header>
+      <div class="kicker">📌 Le programme officiel</div>
+      <h2 id="progH">Ce qu'il faut maîtriser en fin de 1re année</h2>
+      <p id="progP">Les domaines et les attendus, matière par matière. C'est la carte qui permet de savoir <em>où</em> on en est — et quelle vidéo regarder ensuite.</p>
+    </header>
+    <div id="progBody"></div>
+  </section>
+
+
+  <section class="panel" id="metier">
+    <header>
+      <div class="kicker">🎯 Le métier en un coup d'œil</div>
+      <h2>Quatre blocs, une seule logique : faire tourner et tenir</h2>
+      <p>Le technicien réseaux &amp; sécurité n'est pas un informaticien généraliste : il est responsable de <strong>ce qui relie</strong> les machines, et de <strong>ce qui les protège</strong>. Chaque bloc s'évalue sur ce que tu sais faire, preuves à l'appui.</p>
+    </header>
+    <table class="progtable">
+      <thead><tr><th style="width:190px">Bloc</th><th>Ce qu'on te demande</th><th style="width:31%">L'erreur qui coûte cher</th></tr></thead>
+      <tbody>
+        <tr><td class="m"><span class="pill">🔌 Réseau &amp; infrastructure</span></td>
+          <td>Adresser un réseau, le segmenter en VLAN, le router, le câbler, puis <b>diagnostiquer une panne</b> couche par couche.</td>
+          <td>Configurer sans schéma d'adressage écrit. Le jour où ça tombe, personne ne comprend l'architecture.</td></tr>
+        <tr><td class="m"><span class="pill">🖥️ Systèmes &amp; serveurs</span></td>
+          <td>Installer et administrer Windows Server et Linux : comptes, permissions, services, DNS/DHCP, sauvegardes.</td>
+          <td>Ne pas tester la restauration. Une sauvegarde jamais restaurée n'est pas une sauvegarde.</td></tr>
+        <tr><td class="m"><span class="pill">🛡️ Cybersécurité</span></td>
+          <td>Filtrer (pare-feu), chiffrer (VPN, certificats), durcir les systèmes, et expliquer le risque à un non-technicien.</td>
+          <td>Empiler des outils sans politique. La sécurité, c'est une règle écrite et appliquée, pas un logiciel.</td></tr>
+        <tr><td class="m"><span class="pill">🎧 Support &amp; exploitation</span></td>
+          <td>Recevoir une demande, la qualifier, la tracer, la résoudre, la documenter, puis capitaliser.</td>
+          <td>Réparer sans tracer. Le même incident reviendra, et personne ne saura comment tu l'as réglé.</td></tr>
+      </tbody>
+    </table>
+    <div style="padding:4px 26px 26px">
+      <div style="border-left:4px solid var(--fr);padding:8px 0 8px 14px;color:var(--ink2);font-size:13.5px">
+        <strong style="color:var(--ink)">Les certifications qui font la différence sur un CV.</strong>
+        <b>CCNA</b> (réseau) : pendant ou juste après la 2e année — c'est la plus reconnue. <b>CompTIA Network+</b> : une alternative plus accessible, bon premier objectif.
+        <b>CompTIA Security+</b> : la référence côté sécurité, à viser en 2e année. <b>LFCS</b> (Linux) et <b>AZ-900 / MS-900</b> (Microsoft) : rapides à passer, elles prouvent une spécialité.
+        <br><span style="font-size:12.5px">Une certification ne remplace pas un labo : elle le certifie. Commence par le labo.</span>
+      </div>
+    </div>
+    <div style="padding:0 26px 26px">
+      <div class="kicker" style="background:var(--ink)">🧪 Le labo, en 4 étapes</div>
+      <div class="steps" style="padding:14px 0 0">
+        <div class="step"><b>1. Un hyperviseur</b><span>VirtualBox ou VMware sur ton PC. Deux VM : un Windows Server, un Linux.</span></div>
+        <div class="step"><b>2. Un simulateur réseau</b><span>Packet Tracer ou GNS3 : VLAN, routage, NAT. On casse sans risque.</span></div>
+        <div class="step"><b>3. Un domaine complet</b><span>AD + DNS + DHCP + un partage + une GPO. C'est le socle de 80 % des sujets.</span></div>
+        <div class="step"><b>4. Un service exposé</b><span>Un reverse proxy, un pare-feu devant, un certificat. Là, tu comprends la DMZ.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="chaines">
+    <header>
+      <div class="kicker">🎬 Les chaînes</div>
+      <h2>Les chaînes qui font le travail</h2>
+      <p>Toutes gratuites, toutes en français. Elles sont citées sur chaque carte : on sait toujours qui parle à l'enfant.</p>
+    </header>
+    <div class="chans" id="chans"></div>
+  </section>
+
+  <section class="panel" id="methode">
+    <header>
+      <div class="kicker">⏱️ La méthode</div>
+      <h2>Une vidéo, puis la machine. Jamais l'inverse.</h2>
+      <p>En réseau, regarder ne suffit pas : tant que la commande n'est pas tapée, la notion n'existe pas. Voilà l'ordre qui marche.</p>
+    </header>
+    <div class="steps">
+      <div class="step"><b>1. La vidéo, une fois</b><span>On regarde pour comprendre le principe, pas pour mémoriser des commandes.</span></div>
+      <div class="step"><b>2. On refait sur le labo</b><span>Même manip, sur une VM. Si ça casse, c'est que c'est en train de rentrer.</span></div>
+      <div class="step"><b>3. On note les commandes</b><span>Une fiche par thème : 10 lignes, pas un cours recopié.</span></div>
+      <div class="step"><b>4. On casse et on répare</b><span>Une panne provoquée exprès vaut dix vidéos regardées.</span></div>
+      <div class="step"><b>5. On coche, on espace</b><span>Case ✓, retour à J+3 et J+7 : sans réactivation, tout s'oublie.</span></div>
+    </div>
+    <div style="padding:0 26px 26px">
+      <div class="callout" style="border-left:4px solid var(--fr);padding:6px 0 6px 14px;color:var(--ink2);font-size:13.5px">
+        <strong style="color:var(--ink)">Ce qui n'est pas ici, et pourquoi.</strong> Aucune vidéo ne remplace un labo. Une notion de réseau vue sans manipuler s'oublie en une semaine — la vidéo sert à comprendre, la machine sert à savoir faire.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">
+    <div><b>Réseaux Tube</b> — bibliothèque de vidéos pour le TSRS, classée à la main.<br>Parcours technicien supérieur réseaux &amp; sécurité, première et deuxième année.<br><span style="font-size:12px">Version 1 — 8 novembre 2026 · 143 liens testés un par un.</span></div>
+    <div>Les vidéos restent la propriété de leurs auteurs.<br>Les liens ouvrent YouTube ; aucune donnée n'est collectée.<br>Progression enregistrée uniquement sur cet appareil.</div>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="mbox">
+    <div class="mtop"><div class="t" id="mTitle"></div><button id="mClose" aria-label="Fermer">✕</button></div>
+    <div class="video"><iframe id="mFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <div class="mbot">
+      <span id="mMeta"></span>
+      <a id="mLink" href="#" target="_blank" rel="noopener">Ouvrir sur YouTube ↗</a>
+      <button class="seen2" id="mSeen">✓ Marquer comme vue</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const VIDEOS = [{"i":"D-QihBkWQbU","t":"Apprendre l'anglais de l'informatique - le vocabulaire indispensable","c":"ISpeakSpokeSpoken","d":1329,"m":"Anglais technique","th":"Le vocabulaire","lv":["1re année"]},{"i":"-ReQcfZgm9w","t":"Voici le vocabulaire de l'informatique en anglais - partie 1","c":"ISpeakSpokeSpoken","d":675,"m":"Anglais technique","th":"Le vocabulaire","lv":["1re année"]},{"i":"gONjleySTVU","t":"Les BASES du réseau informatique en 21 minutes CHRONO !","c":"Formip - Certification IT","d":1277,"m":"Anglais technique","th":"Le vocabulaire","lv":["1re année"]},{"i":"DsJDgHvbipY","t":"Anglais Informatique","c":"Anglais Avec un Anglophone","d":605,"m":"Anglais technique","th":"Le vocabulaire","lv":["1re année"]},{"i":"YlrdJK6EbEM","t":"Virtualisation : les hyperviseurs de type 1 et de type 2","c":"IT-Connect - Florian","d":537,"m":"Cloud & Supervision","th":"La virtualisation","lv":["1re année"]},{"i":"4J_00mQ5BAs","t":"Comprendre la virtualisation en 7 minutes","c":"Cookie connecté","d":403,"m":"Cloud & Supervision","th":"La virtualisation","lv":["1re année"]},{"i":"Cd82kSqYzH4","t":"Le Cloud Computing pour les débutants","c":"IT-Connect - Florian","d":1121,"m":"Cloud & Supervision","th":"Le cloud","lv":["1re année"]},{"i":"Al-E4C69UmQ","t":"Comprendre les modèles de Cloud (IaaS, PaaS, SaaS, CaaS, FaaS)","c":"Cookie connecté","d":609,"m":"Cloud & Supervision","th":"Le cloud","lv":["1re année"]},{"i":"VT-7aAid1iA","t":"Comment reconnaître un message de phishing ?","c":"Cybermalveillance-gouv-fr","d":128,"m":"Cybersécurité","th":"Le hameçonnage","lv":["1re année"]},{"i":"DHmkVQNcJyQ","t":"Comment reconnaître un message de phishing ? #Cybermalveillance #CONSOMAG","c":"ConsoMag","d":128,"m":"Cybersécurité","th":"Le hameçonnage","lv":["1re année"]},{"i":"9Hva31WZhBQ","t":"Si je Devais Commencer la Cybersécurité en 2026, voici EXACTEMENT ce que je ferais","c":"Parlons Cyber","d":769,"m":"Cybersécurité","th":"Les fondamentaux","lv":["1re année"]},{"i":"VLr0mTzYfRE","t":"Cybersécurité : guide COMPLET pour démarrer rapidement - Sécurité informatique débutant","c":"Techno","d":1058,"m":"Cybersécurité","th":"Les fondamentaux","lv":["1re année"]},{"i":"SxmtYeAzqMQ","t":"🔒 Comment choisir un bon mot de passe fort et sécurisé : conseils et bonnes pratiques","c":"🛡️ Agence SESSUR CYBERSÉCURITÉ","d":466,"m":"Cybersécurité","th":"Les mots de passe","lv":["1re année"]},{"i":"V8vj5-1Fsac","t":"SÉCURITÉ EN LIGNE : Les 10 BONNES PRATIQUES Indispensables pour Toute la Famille !","c":"Mike | Famille Recomposée & Sérénité","d":510,"m":"Cybersécurité","th":"Les mots de passe","lv":["1re année"]},{"i":"DNBG7rWCpuI","t":"Démo Ransomware (PSRansom) : chiffrer, déchiffrer, exfiltrer les données","c":"IT-Connect - Florian","d":718,"m":"Cybersécurité","th":"Les ransomwares","lv":["1re année"]},{"i":"G_lFrgwjw9E","t":"Le Ransomware expliqué en 5 minutes","c":"Cookie connecté","d":319,"m":"Cybersécurité","th":"Les ransomwares","lv":["1re année"]},{"i":"mm-5ZSVG-CQ","t":"Binaire, Décimal, Hexadécimal expliqués SIMPLEMENT (avec conversions)","c":"Finger In The Net","d":363,"m":"Fondamentaux","th":"Binaire et hexadécimal","lv":["1re année"]},{"i":"jU49zvp6Rsg","t":"Conversion entre Base Binaire et Hexadécimale","c":"Mathrix","d":467,"m":"Fondamentaux","th":"Binaire et hexadécimal","lv":["1re année"]},{"i":"T_7ic97BOMQ","t":"C'est quoi un réseau LAN et WAN ? Découvre la différence !","c":"Formip - Certification IT","d":288,"m":"Fondamentaux","th":"LAN, WAN, types de réseaux","lv":["1re année"]},{"i":"_D4bObLSyjE","t":"Réseau : LAN, MAN, WAN et PAN pour les débutants","c":"IT-Connect - Florian","d":685,"m":"Fondamentaux","th":"LAN, WAN, types de réseaux","lv":["1re année"]},{"i":"85XUJXHbjBo","t":"Comment fonctionne un ordinateur? [Bases de l'informatique]","c":"codeur-pro","d":591,"m":"Fondamentaux","th":"Le matériel","lv":["1re année"]},{"i":"geBcfKn3B1g","t":"Anatomie détaillée des principaux composants d'un PC (carte mère, carte graphique, RAM, SSD, HDD)","c":"Deus Ex Silicium","d":2946,"m":"Fondamentaux","th":"Le matériel","lv":["1re année"]},{"i":"P_hVprfTgls","t":"Le modèle OSI expliqué simplement pour tous !","c":"Formip - Certification IT","d":650,"m":"Fondamentaux","th":"Le modèle OSI","lv":["1re année"]},{"i":"darvsbHcchs","t":"Le modèle OSI et TCPIP enfin facile à comprendre !","c":"Formip - Certification IT","d":251,"m":"Fondamentaux","th":"Le modèle OSI","lv":["1re année"]},{"i":"rSLF-j8RlJ4","t":"Le modèle OSI et TCP/IP expliqués simplement (les 7 couches)","c":"Finger In The Net","d":825,"m":"Fondamentaux","th":"Le modèle OSI","lv":["1re année"]},{"i":"RUUoRf3v5R0","t":"🧠 Le Modèle OSI expliqué simplement ! (7 couches du réseau) 📶","c":"WayToLearnX","d":479,"m":"Fondamentaux","th":"Le modèle OSI","lv":["1re année"]},{"i":"lPTC2HsQ7M8","t":"Les commandes Réseau (ipconfig,ping,tracert,nslookup)","c":"PRO IT TUTORIEL","d":406,"m":"Fondamentaux","th":"Les commandes réseau","lv":["1re année"]},{"i":"up3bcBLZS74","t":"Explication de Traceroute (tracert) - Dépannage réseau","c":"PowerCert Animated Videos","d":564,"m":"Fondamentaux","th":"Les commandes réseau","lv":["1re année"]},{"i":"trLrsuPVAV8","t":"🚀 Comment Installer Linux sur une Machine Virtuelle ( Ubuntu sur VirtualBox )","c":"Marie Développe","d":559,"m":"Linux","th":"Installation","lv":["1re année"]},{"i":"36g17uWC1VY","t":"INSTALLER UBUNTU SUR UNE MACHINE VIRTUEL (VIRTUALBOX)","c":"Kyzaro","d":358,"m":"Linux","th":"Installation","lv":["1re année"]},{"i":"UhR4ZaNt4J4","t":"Comprendre les permissions sous Unix et Linux","c":"Yves Rougy | Yorzian","d":1123,"m":"Linux","th":"Les permissions","lv":["1re année"]},{"i":"951Vtk8-H20","t":"Linux - Comment modifier les permissions des fichiers (explication de chmod)","c":"HardReset.Info","d":391,"m":"Linux","th":"Les permissions","lv":["1re année"]},{"i":"DyMiFMNmH2U","t":"60 Commandes Linux que vous DEVEZ Connaître en 2026 (en 12 Minutes)","c":"Parlons Cyber","d":740,"m":"Linux","th":"Premières commandes","lv":["1re année"]},{"i":"GHPxJ7kPCcI","t":"Maîtrisez le terminal Linux : Commandes Essentielles pour Débutants","c":"Marie Développe","d":989,"m":"Linux","th":"Premières commandes","lv":["1re année"]},{"i":"jmJpNkWQQ7w","t":"16 commandes LINUX à connaitre absolument","c":"Bande de Codeurs","d":1190,"m":"Linux","th":"Premières commandes","lv":["1re année"]},{"i":"RkGUWKsE_Ng","t":"51 commandes Linux de base à ABSOLUMENT connaitre (en 14 minutes)","c":"Techno","d":844,"m":"Linux","th":"Premières commandes","lv":["1re année"]},{"i":"yfGbfZUzFq8","t":"Apprendre tout sur Vim : Tutoriel Linux #1","c":"Meta-tech","d":906,"m":"Linux","th":"Vim","lv":["1re année"]},{"i":"VsQlmIE4kn8","t":"Tuto rapide sur l'editeur Vim sur Linux Ubuntu (sauvegarder et quitter vim)","c":"Lacapacitee","d":149,"m":"Linux","th":"Vim","lv":["1re année"]},{"i":"CEXbO0WjNQc","t":"Alaïa, technicien systèmes et réseaux témoigne ! Son expérience en alternance chez XBline","c":"WebForce3","d":146,"m":"Méthode & validation","th":"Le métier","lv":["1re année"]},{"i":"gKFelUE52I8","t":"Technicien Systèmes Réseaux - Portrait","c":"Mon Avenir Pro - Hauts-de-France","d":144,"m":"Méthode & validation","th":"Le métier","lv":["1re année"]},{"i":"m92ZRwa2qe8","t":"Réaliser le dossier de projet partie 1","c":"Henry-Laurent Jansa, FPA","d":572,"m":"Méthode & validation","th":"Les blocs de compétences","lv":["1re année"]},{"i":"lqpUg5N8QiI","t":"👀 - Le passage du titre professionnel Conseiller en insertion professionnelle ? (CIP)","c":"Oravendis","d":184,"m":"Méthode & validation","th":"Les blocs de compétences","lv":["1re année"]},{"i":"qJIXgl0EjtI","t":"Adresse IP : débuter avec le calcul des masques de sous-réseaux","c":"IT-Connect - Florian","d":2076,"m":"Réseaux","th":"Adressage IPv4","lv":["1re année"]},{"i":"S_EfcLo2Wv0","t":"📡 Maîtrise le Calcul de sous-réseau (Subnetting) en 10 min ⏱️","c":"WayToLearnX","d":576,"m":"Réseaux","th":"Adressage IPv4","lv":["1re année"]},{"i":"dCWDq2Ty00g","t":"Adresse IP et Masques de Sous Réseaux en 5min","c":"Dataseito","d":356,"m":"Réseaux","th":"Adressage IPv4","lv":["1re année"]},{"i":"4dOzT9sTlz8","t":"SNIR - 1° Cour réseau (IP, MASQUE et SOUS RÉSEAU)","c":"Enzo Blanchon","d":541,"m":"Réseaux","th":"Adressage IPv4","lv":["1re année"]},{"i":"y3xSGPo9k24","t":"COMMENT CABLER UN PLUG RJ45...LES COULEURS DE CABLAGE A RESPECTER ..👌👀","c":"RetroArCab ","d":246,"m":"Réseaux","th":"Le câblage","lv":["1re année"]},{"i":"hmoVBbtGJ1U","t":"Branchement PRISE RJ45 - Comment raccorder une PRISE RJ45 !!! Schéma CAT 5e , 6e .NOYAU CABLAGE","c":"RetroArCab ","d":357,"m":"Réseaux","th":"Le câblage","lv":["1re année"]},{"i":"l8_dnyMaFe8","t":"Hub vs Switch vs Routeur : Comprends Enfin la Différence !","c":"Formip - Certification IT","d":711,"m":"Réseaux","th":"Switch et routeur","lv":["1re année"]},{"i":"u8fnA6AyVeU","t":"Switch vs Routeur : Comprendre les Différences Clés !","c":"Formip - Certification IT","d":244,"m":"Réseaux","th":"Switch et routeur","lv":["1re année"]},{"i":"zCnSmQq5GBs","t":"[R08] Protocole TCP : tout comprendre avec ce cours avancé","c":"Julien Code","d":1797,"m":"Réseaux","th":"TCP/IP","lv":["1re année"]},{"i":"DI3xmtAKZJA","t":"Le protocole TCP-IP - SNT -Seconde","c":"Les Bons Profs","d":337,"m":"Réseaux","th":"TCP/IP","lv":["1re année"]},{"i":"lJPFx98WXhk","t":"Introduction à l’algorithmique - Cours complet pour débutants","c":"DataFacile","d":503,"m":"Scripting","th":"Algorithmique","lv":["1re année"]},{"i":"MU1XvyesHB4","t":"Formation Algorithmique : Qu'est-ce qu'un algorithme ? Définition et exemples - Cours #1","c":"BOUDRIBILA","d":391,"m":"Scripting","th":"Algorithmique","lv":["1re année"]},{"i":"gBCGeLjYBgQ","t":"Introduction Script Bash sur Linux","c":"IT-Connect - Florian","d":1485,"m":"Scripting","th":"Bash","lv":["1re année"]},{"i":"Ecdl1pOMtmE","t":"Débutant : comment créer son premier script PowerShell ?","c":"IT-Connect - Florian","d":2097,"m":"Scripting","th":"Bash","lv":["1re année"]},{"i":"2vPzm6wN6vw","t":"PowerShell - Apprenez à maîtriser les boucles For","c":"IT-Connect - Florian","d":655,"m":"Scripting","th":"Bash","lv":["1re année"]},{"i":"JnZBe83vr0s","t":"Apprendre les boucles Bash : for, while et until - Cours Bash complet","c":"L'Hackiviste","d":569,"m":"Scripting","th":"Bash","lv":["1re année"]},{"i":"xmLPdNdPZ_k","t":"Installer l'Agent GLPI & le Relier au Serveur GLPI [TUTORIEL]","c":"Numelion IT","d":381,"m":"Support & Parc","th":"GLPI","lv":["1re année"]},{"i":"Hlhe1B_tqxI","t":"Installation de GLPI version 10","c":"Yannick Teach","d":441,"m":"Support & Parc","th":"GLPI","lv":["1re année"]},{"i":"6ewwzRXsYKA","t":"Tout savoir sur GLPI (Gestionnaire Libre de Parc Informatique) #glpi #components #monitoring #ticket","c":"Leonel Awouma","d":1502,"m":"Support & Parc","th":"GLPI","lv":["1re année"]},{"i":"0r8WShEBDJk","t":"Gestion des stocks GLPI","c":"GLPI Start to Pro & architecture des ordinateurs","d":397,"m":"Support & Parc","th":"GLPI","lv":["1re année"]},{"i":"q_ke8j9IQzI","t":"Combien gagne un technicien support informatique ? La réponse va te surprendre !","c":"Formip - Certification IT","d":470,"m":"Support & Parc","th":"Le support utilisateur","lv":["1re année"]},{"i":"9rUMJ7eM6iY","t":"Les 6 meilleures pratiques MSP pour organiser son support informatique","c":"BeMSP","d":557,"m":"Support & Parc","th":"Le support utilisateur","lv":["1re année"]},{"i":"AOv9wBPsu2s","t":"De Zéro à Héros dans l'Active Directory : Comprendre ENFIN l'Arbre, la Forêt et le Domaine","c":"Formip - Certification IT","d":1072,"m":"Systèmes Windows","th":"Active Directory","lv":["1re année"]},{"i":"EB6IYcVqQSI","t":"Active Directory : Qu'est-ce qu'une stratégie de groupe / GPO ?","c":"IT-Connect - Florian","d":633,"m":"Systèmes Windows","th":"Active Directory","lv":["1re année"]},{"i":"nhW-0qZzjy4","t":"Comprendre l'Active Directory en 7 minutes","c":"Cookie connecté","d":445,"m":"Systèmes Windows","th":"Active Directory","lv":["1re année"]},{"i":"8DvFKfFQXoc","t":"Les bases de l'Active Directory - guide complet pour débutants","c":"InfraNerdFR","d":5356,"m":"Systèmes Windows","th":"Active Directory","lv":["1re année"]},{"i":"87wZIdZ6BfY","t":"Installer et configurer un serveur DHCP - Windows Server 2019","c":"IT-Connect - Florian","d":1358,"m":"Systèmes Windows","th":"DHCP","lv":["1re année"]},{"i":"b1gjdDjBnb4","t":"Windows Server : de Zero à Hero","c":"IT-Connect - Florian","d":2769,"m":"Systèmes Windows","th":"DHCP","lv":["1re année"]},{"i":"qHJmdQPF7Vo","t":"Windows Server 2022 - DNS","c":"IT-Connect - Florian","d":577,"m":"Systèmes Windows","th":"DNS","lv":["1re année"]},{"i":"610rlnB9CMw","t":"Comment configurer un domaine Active Directory sur Windows Server 2022 - Guide étape par étape","c":"Dirtech IT","d":601,"m":"Systèmes Windows","th":"DNS","lv":["1re année"]},{"i":"nNerx5ZcU58","t":"Créer une GPO dans ACTIVE DIRECTORY - Tutoriel STRATÉGIE DE GROUPE","c":"Numelion IT","d":685,"m":"Systèmes Windows","th":"Les GPO","lv":["1re année"]},{"i":"up9piSOyQOE","t":"156# Déployer des stratégies de groupe sous Windows Server 2022 #GPO","c":"Landry H. Ahouansou","d":596,"m":"Systèmes Windows","th":"Les GPO","lv":["1re année"]},{"i":"KCeX-65ohRA","t":"Débuter avec VMware Workstation Pro - Episode 1","c":"IT-Connect - Florian","d":987,"m":"Systèmes Windows","th":"Machines virtuelles","lv":["1re année"]},{"i":"Vmd9Amz524U","t":"VMware Workstation Pro - Episode 6","c":"IT-Connect - Florian","d":1999,"m":"Systèmes Windows","th":"Machines virtuelles","lv":["1re année"]},{"i":"Lfn99UGXZi0","t":"Serveur de fichiers - Episode 2","c":"IT-Connect - Florian","d":776,"m":"Systèmes Windows","th":"Permissions NTFS","lv":["1re année"]},{"i":"dzmONPLGaME","t":"Serveur de fichiers - Episode 1","c":"IT-Connect - Florian","d":582,"m":"Systèmes Windows","th":"Permissions NTFS","lv":["1re année"]},{"i":"MsxcpZr1LpM","t":"English for Developers: Real Daily Stand-up Meeting - Listening Practice","c":"EnglishNotNull","d":450,"m":"Anglais technique","th":"Compréhension","lv":["2e année"]},{"i":"adZ-LYWx95Q","t":"Essential Technology Vocabulary in English: Advanced Vocabulary Lesson","c":"Speak English With Vanessa","d":1249,"m":"Anglais technique","th":"Compréhension","lv":["2e année"]},{"i":"FDHnnR_61tA","t":"Compréhension orale anglais- 4-day work week","c":"CO Anglais","d":101,"m":"Anglais technique","th":"Compréhension","lv":["2e année"]},{"i":"QjGrkBXoZlY","t":"Compréhension orale anglais - Digital detox (Niveau Tle B2) + script","c":"CO Anglais","d":94,"m":"Anglais technique","th":"Compréhension","lv":["2e année"]},{"i":"ZLFo-dYVRww","t":"Microsoft Exchange Online pour les débutants !","c":"Andy Malone MVP","d":1871,"m":"Cloud & Supervision","th":"Exchange Online","lv":["2e année"]},{"i":"J0OWaStDkMc","t":"How to Use Exchange Online Admin Center (Office 365 Admin Tutorial)","c":"Ikpa Thomas","d":1681,"m":"Cloud & Supervision","th":"Exchange Online","lv":["2e année"]},{"i":"0xmgMBAMu5E","t":"La Supervision d'un réseau informatique avec Nagios (XI)","c":"Itsyacinn","d":3629,"m":"Cloud & Supervision","th":"La supervision","lv":["2e année"]},{"i":"PUG89dXIlUo","t":"Installation de Centreon sur VMware et Supervision Windows via SNMP : Tutoriel Complet","c":"Abdelhakim ASRI","d":3769,"m":"Cloud & Supervision","th":"La supervision","lv":["2e année"]},{"i":"IKAYks8SOWo","t":"Supervision métier, arbres d'impact & notifications par rôle - Démo complète","c":"Centreon","d":1040,"m":"Cloud & Supervision","th":"La supervision","lv":["2e année"]},{"i":"-ImBZbsQWPw","t":"Centre d'administration Microsoft 365","c":"Cybermatik","d":996,"m":"Cloud & Supervision","th":"Microsoft 365","lv":["2e année"]},{"i":"IJtfPeqagFg","t":"Administration de Microsoft 365 : Ce que tout technicien informatique doit savoir","c":"Jake's Tech","d":878,"m":"Cloud & Supervision","th":"Microsoft 365","lv":["2e année"]},{"i":"mqzb_4lz_gs","t":"SNMP expliqué simplement pour comprendre la supervision réseau !","c":"Formip - Certification IT","d":399,"m":"Cloud & Supervision","th":"SNMP","lv":["2e année"]},{"i":"G7XOn2IPYQ0","t":"SNMP expliqué simplement pour surveiller tous tes équipements !","c":"Formip - Certification IT","d":405,"m":"Cloud & Supervision","th":"SNMP","lv":["2e année"]},{"i":"HLl8KT9eMZI","t":"DMZ : DEMILITARIZED ZONE - NOTION ET EXPLICATION","c":"CONNECTEAME-SERVICES","d":222,"m":"Cybersécurité","th":"La DMZ","lv":["2e année"]},{"i":"Vz8PRahkB04","t":"01 Cybersécurité Architecture Sécurisée","c":"AcadiaCyberSec","d":702,"m":"Cybersécurité","th":"La DMZ","lv":["2e année"]},{"i":"sLPqXeV3a3I","t":"SPLIT TUNNELING NORDVPN ➗ Présentation et Démo du Split Tunneling (Tunnel Divisé) de NordVPN ✅","c":"VPN Club","d":340,"m":"Cybersécurité","th":"Le VPN","lv":["2e année"]},{"i":"6Swt51w3EjY","t":"Firewall : comprendre l'essentiel en 7 minutes","c":"Cookie connecté","d":474,"m":"Cybersécurité","th":"Le pare-feu","lv":["2e année"]},{"i":"FXaJJJ_LcMQ","t":"[CS01] Contourner un Pare-feu . Cyber Sécurité Cours N°1","c":"Julien Code","d":1584,"m":"Cybersécurité","th":"Le pare-feu","lv":["2e année"]},{"i":"hgHaz4j6hB4","t":"Comprendre une attaque DDoS en 12 minutes (cas réel)","c":"Formip - Certification IT","d":777,"m":"Cybersécurité","th":"Les attaques","lv":["2e année"]},{"i":"n4Zs0qcgjXI","t":"Comprendre l'attaque DDOS en 4 minutes","c":"Cookie connecté","d":254,"m":"Cybersécurité","th":"Les attaques","lv":["2e année"]},{"i":"-dHbXLR-Mao","t":"Qu'est ce qu'un certificat SSL/TLS ? - Cryptographie, PKI, Openssl","c":"Techno","d":490,"m":"Cybersécurité","th":"Les certificats","lv":["2e année"]},{"i":"Sx7ZNDppxQc","t":"PKI - Introduction aux PKI : la cryptographie","c":"ENI Informatique","d":120,"m":"Cybersécurité","th":"Les certificats","lv":["2e année"]},{"i":"bqAjWf_aqEw","t":"Tu veux bosser en informatique ? Découvre ces 2 métiers !","c":"Formip - Certification IT","d":385,"m":"Cybersécurité","th":"Sécurité des systèmes","lv":["2e année"]},{"i":"bkQ1jTbxof8","t":"ADMINISTRATEUR SYSTÈMES ET RÉSEAUX - Tout ce qu'il faut savoir","c":"Fed Group","d":285,"m":"Cybersécurité","th":"Sécurité des systèmes","lv":["2e année"]},{"i":"waetmCUHGVM","t":"[8] Installer Apache Debian et comprendre sa Configuration","c":"Julien Code","d":940,"m":"Linux","th":"Administration","lv":["2e année"]},{"i":"Fg76sYsSKqQ","t":"Gérer les utilisateurs sous Linux®","c":"Informatique Sans Complexe !","d":281,"m":"Linux","th":"Administration","lv":["2e année"]},{"i":"MeltFN-bXrQ","t":"Tutoriel approfondi sur le gestionnaire de volumes logiques Linux (LVM)","c":"Learn Linux TV","d":3193,"m":"Linux","th":"Disques et LVM","lv":["2e année"]},{"i":"DbrnnQsF2S4","t":"LVM : Introduction, Concepts et Définitions - #Linux 1.26","c":"xavki","d":1172,"m":"Linux","th":"Disques et LVM","lv":["2e année"]},{"i":"0dG3vUYt7Uk","t":"Notions de base sur journalctl : comment consulter facilement vos journaux Linux","c":"Learn Linux TV","d":1174,"m":"Linux","th":"Les journaux","lv":["2e année"]},{"i":"A3gnXcmzSWI","t":"Syslog Ep. 1 Intro: Understanding the mechanism of logs in Unix and Linux","c":"Yves Rougy | Yorzian","d":1036,"m":"Linux","th":"Les journaux","lv":["2e année"]},{"i":"f5WPsLEskD8","t":"Linux - Comment gérer les services avec systemctl","c":"HardReset_Pro","d":472,"m":"Linux","th":"Les services","lv":["2e année"]},{"i":"KHzD0c2Up7k","t":"Explication des processus, services et de systemd sous Linux pour les ingénieurs DevOps","c":"Techi Nik","d":824,"m":"Linux","th":"Les services","lv":["2e année"]},{"i":"Z7s01eEn5GU","t":"Linux® : Planifier des tâches","c":"Informatique Sans Complexe !","d":262,"m":"Linux","th":"Tâches planifiées","lv":["2e année"]},{"i":"2Zqqlhc6bQE","t":"Tuto: Programmer des tâches avec cron et la crontab","c":"Yves Rougy | Yorzian","d":839,"m":"Linux","th":"Tâches planifiées","lv":["2e année"]},{"i":"TYAe1c1iOLU","t":"POWERPOINT : Soutenir son mémoire et faire sa présentation à l'oral 🗣️","c":"Microsoft ExpertZone France","d":383,"m":"Méthode & validation","th":"L'oral du jury","lv":["2e année"]},{"i":"r_SD_3lLRNA","t":"Epreuve d’entretien avec le jury dans la FP, exemple de présentation orale en 5 minutes","c":"La Pause Concours, coaching préparation concours ","d":414,"m":"Méthode & validation","th":"L'oral du jury","lv":["2e année"]},{"i":"ndjY_Qxh7JM","t":"Rédiger son dossier professionnel","c":"Oravendis","d":539,"m":"Méthode & validation","th":"Le dossier","lv":["2e année"]},{"i":"FPmRv1xhVUw","t":"Le dossier professionnel de Secrétaire assistant médico-administratif (SAMA)","c":"Oravendis","d":1420,"m":"Méthode & validation","th":"Le dossier","lv":["2e année"]},{"i":"ZpbQzmkncqY","t":"Débuter avec l'IOS Cisco : Guide Complet pour les Débutants","c":"Formip - Certification IT","d":210,"m":"Réseaux","th":"Cisco IOS","lv":["2e année"]},{"i":"HjFYeVTQsMA","t":"Configuration de base d’un routeur Cisco - Commandes IOS","c":"Gui&soft et Michel Gauss","d":1364,"m":"Réseaux","th":"Cisco IOS","lv":["2e année"]},{"i":"UdhgNdP7b7Q","t":"VoIP : comprendre l'essentiel en 5 minutes","c":"Cookie connecté","d":301,"m":"Réseaux","th":"La téléphonie sur IP","lv":["2e année"]},{"i":"9ySuRhmdNAk","t":"IPBX VoIP : comprendre l'essentiel en 6 minutes","c":"Cookie connecté","d":387,"m":"Réseaux","th":"La téléphonie sur IP","lv":["2e année"]},{"i":"FTUV0t6JaDA","t":"Explication du NAT - Traduction d'adresses réseau","c":"PowerCert Animated Videos","d":266,"m":"Réseaux","th":"Le NAT","lv":["2e année"]},{"i":"BKs14dKMRHo","t":"Configurer le Routage Statique - 🖧 Cisco Packet Tracer 🖧","c":"Numelion IT","d":1366,"m":"Réseaux","th":"Le routage","lv":["2e année"]},{"i":"5dCtWJxz2mQ","t":"9_Configuration du routage statique sur équipement CISCO","c":"Prince ATTOBLA","d":522,"m":"Réseaux","th":"Le routage","lv":["2e année"]},{"i":"F1j3ZKiw7UA","t":"VLAN, trunk, 802.1Q : tout comprendre pour cloisonner son réseau","c":"IT-Connect - Florian","d":1847,"m":"Réseaux","th":"Les VLAN","lv":["2e année"]},{"i":"8cT3gHDKtqw","t":"VLAN : Le secret de la segmentation réseau révélé !","c":"Formip - Certification IT","d":1183,"m":"Réseaux","th":"Les VLAN","lv":["2e année"]},{"i":"ev1MVHD8NPA","t":"Le Guide Ultime de Packet Tracer : De Zéro à Héros (Installez et Créez votre Premier Réseau)","c":"Formip - Certification IT","d":686,"m":"Réseaux","th":"Packet Tracer","lv":["2e année"]},{"i":"EBPLEbi4OkE","t":"Les bases du réseau pour débutants - Le guide complet en 1h30","c":"InfraNerdFR","d":5246,"m":"Réseaux","th":"Packet Tracer","lv":["2e année"]},{"i":"ps0CIdIeGGs","t":"Comment automatiser une tache avec un script PowerShell (via l'outils Planificateur des taches)","c":"Le Technicien IT","d":572,"m":"Scripting","th":"Automatisation","lv":["2e année"]},{"i":"_iV375iimaM","t":"Comment Automatiser TOUTES vos Tâches Windows et Linux GRATUITEMENT ?","c":"Simple&Gratuit","d":1651,"m":"Scripting","th":"Automatisation","lv":["2e année"]},{"i":"UYs8Cn-qvVg","t":"15 commandes indispensables pour débuter avec PowerShell","c":"IT-Connect - Florian","d":2253,"m":"Scripting","th":"PowerShell","lv":["2e année"]},{"i":"PIJIzePX8_M","t":"Powershell : Comment démarrer RAPIDEMENT (C'est très simple)","c":"Techno","d":439,"m":"Scripting","th":"PowerShell","lv":["2e année"]},{"i":"bN2FiVNqiY4","t":"Inventorier et gérer son parc informatique - Poste de travail E03","c":"Bitdyne","d":478,"m":"Support & Parc","th":"Gestion de parc","lv":["2e année"]},{"i":"8fevxj7KUQ0","t":"Comment avoir une bonne gestion de parc informatique ?","c":"Secula RCI33","d":191,"m":"Support & Parc","th":"Gestion de parc","lv":["2e année"]},{"i":"5hVfgYqsXd8","t":"Qu’est ce que le numérique responsable ? Pourquoi le numérique n’est plus soutenable ?","c":"Green IT Impact","d":766,"m":"Support & Parc","th":"Green IT","lv":["2e année"]},{"i":"TfaQ9BZ936o","t":"Anne, experte Green IT et Numérique Responsable - vidéo métier selfie","c":"TALENTS DU NUMÉRIQUE","d":249,"m":"Support & Parc","th":"Green IT","lv":["2e année"]},{"i":"Sa2SQVctFMU","t":"Formation au reconditionnement d'ordinateur","c":"AnonymalTV","d":179,"m":"Support & Parc","th":"Reconditionnement","lv":["2e année"]},{"i":"ksxweUGTJkI","t":"Reconditionner des vieux PC portables, bonne Idée ?","c":"Le BENGE","d":913,"m":"Support & Parc","th":"Reconditionnement","lv":["2e année"]},{"i":"qe3MG1px9BI","t":"[S04]10 commandes Linux pour Apprendre l'administration des Systèmes","c":"Julien Code","d":1363,"m":"Systèmes Windows","th":"Administration serveur","lv":["2e année"]},{"i":"v8w8BYIFwt8","t":"Administration Windows Server et Écosystème IT Formation Pratique","c":"KRIT Academy","d":347,"m":"Systèmes Windows","th":"Administration serveur","lv":["2e année"]},{"i":"Hoil6MRWhAA","t":"Le protocole RDP et le Bureau à distance pour les débutants","c":"IT-Connect - Florian","d":1129,"m":"Systèmes Windows","th":"Bureau à distance RDS","lv":["2e année"]},{"i":"2ZqHxnDZruw","t":"Installer RDS sur Windows Server 2022 - Tuto Complet Remote Desktop Services","c":"Geek Advisor","d":826,"m":"Systèmes Windows","th":"Bureau à distance RDS","lv":["2e année"]},{"i":"ILon8Quv924","t":"Déploiement de Windows - Episode 1","c":"IT-Connect - Florian","d":1338,"m":"Systèmes Windows","th":"Déploiement WDS","lv":["2e année"]},{"i":"bx374BP8I6A","t":"Déploiement de Windows - Episode 2","c":"IT-Connect - Florian","d":2239,"m":"Systèmes Windows","th":"Déploiement WDS","lv":["2e année"]}];
+const PROG   = {"1re année":{"short":"les fondations","resume":"Première année : le socle technique. Sans adressage IP, sans Linux et sans Windows Server, la suite ne tient pas. C'est aussi l'année où l'on se monte un labo chez soi.","matieres":[{"n":"Fondamentaux","e":"🧩","c":"#23618F","att":"Comprendre ce qui se passe entre deux machines : les couches, les adresses, le matériel.","dom":[["Le modèle OSI","les 7 couches, l'encapsulation"],["TCP/IP","la pile, les ports, les protocoles"],["Binaire et hexadécimal","convertir, calculer une plage"],["Le matériel","composants d'un PC, d'un serveur, d'un switch"],["Les commandes réseau","ping, tracert, nslookup, ipconfig"],["Types de réseaux","LAN, WAN, MAN, PAN"]]},{"n":"Réseaux","e":"🔌","c":"#1F6FB2","att":"Adresser, segmenter et interconnecter : c'est le cœur du métier.","dom":[["Adressage IPv4","masques, sous-réseaux, VLSM"],["Switch et routeur","rôles, configuration de base"],["Les VLAN","segmentation, trunk, routage inter-VLAN"],["Le routage","table de routage, statique, premier dynamique"],["Le NAT","translation d'adresses, accès Internet"],["Cisco IOS","commandes, modes, sauvegarde de config"],["Packet Tracer","simuler avant de casser du vrai matériel"],["Le câblage","RJ45, baie, normes, tests"]]},{"n":"Systèmes Windows","e":"🖥️","c":"#37496B","att":"Installer, administrer et sécuriser un serveur Windows.","dom":[["Administration serveur","rôles, services, gestionnaire de serveur"],["Active Directory","domaine, OU, comptes, groupes"],["Les GPO","stratégies de groupe, application, dépannage"],["DNS et DHCP","installer, configurer, tester"],["Permissions NTFS","partages, droits effectifs, héritage"],["Machines virtuelles","Hyper-V, snapshots"],["Bureau à distance RDS","publier une application, gérer les sessions"]]},{"n":"Linux","e":"🐧","c":"#9B5320","att":"Administrer un serveur Linux en ligne de commande.","dom":[["Installation","choisir, partitionner, premier démarrage"],["Premières commandes","naviguer, chercher, éditer"],["Les permissions","chmod, chown, umask, sudo"],["Les services","systemd, démarrage, journaux"],["Disques et LVM","monter, étendre, surveiller l'espace"],["Tâches planifiées","cron, at"],["Vim","survivre et éditer efficacement"]]},{"n":"Cybersécurité","e":"🛡️","c":"#C2185B","att":"Comprendre les attaques et poser les premières protections.","dom":[["Les fondamentaux","menace, vulnérabilité, risque"],["Le pare-feu","règles, filtrage, zones"],["Le VPN","tunnel, chiffrement, accès distant"],["Les mots de passe","politique, authentification forte"],["Le hameçonnage","reconnaître, sensibiliser"],["Les ransomwares","vecteurs, sauvegardes, réaction"]]},{"n":"Scripting","e":"⌨️","c":"#00796B","att":"Automatiser ce qu'on ferait dix fois à la main.","dom":[["Algorithmique","variables, conditions, boucles"],["Bash","scripts système, arguments, tests"],["PowerShell","cmdlets, pipeline, objets"],["Automatisation","tâches répétitives, planification"]]},{"n":"Cloud & Supervision","e":"☁️","c":"#6D28D9","att":"Comprendre la virtualisation et surveiller une infrastructure.","dom":[["La virtualisation","hyperviseur, VM, ressources"],["Le cloud","IaaS, PaaS, SaaS, responsabilité partagée"],["La supervision","métriques, seuils, alertes"],["SNMP","interroger un équipement"]]},{"n":"Support & Parc","e":"🎧","c":"#8D6E63","att":"Recevoir, tracer et résoudre une demande utilisateur.","dom":[["Le support utilisateur","tickets, priorités, escalade"],["Gestion de parc","inventaire, cycles de vie"],["GLPI","tickets, actifs, base de connaissances"]]},{"n":"Méthode & validation","e":"🎯","c":"#00838F","att":"Comprendre ce que le jury attend et comment le prouver.","dom":[["Les blocs de compétences","ce qui est évalué, et comment"],["Le dossier","preuves, captures, procédures"],["L'oral du jury","présenter, argumenter, répondre"]]},{"n":"Anglais technique","e":"🇬🇧","c":"#B93A73","att":"Lire une documentation, un message d'erreur, une interface.","dom":[["Le vocabulaire","réseau, sécurité, matériel"],["Compréhension","documentation et notices"]]}]},"2e année":{"short":"vers la certification","resume":"Deuxième année : on industrialise. Annuaire, sécurité, supervision, cloud, et le dossier professionnel. C'est aussi l'année où l'on passe les certifications qui font la différence sur un CV.","matieres":[{"n":"Fondamentaux","e":"🧩","c":"#23618F","att":"Consolider les bases pour aborder les architectures complexes.","dom":[["TCP/IP","analyse de trames, ports, flux"],["Les commandes réseau","diagnostic avancé"],["Binaire et hexadécimal","calculs de plages et de masques"]]},{"n":"Réseaux","e":"🔌","c":"#1F6FB2","att":"Concevoir un réseau d'entreprise et le dépanner vite.","dom":[["Le routage","routage dynamique, OSPF"],["Les VLAN","architecture segmentée, trunk, sécurité"],["Le NAT","publication de services, redirection"],["La téléphonie sur IP","ToIP, VLAN voix, qualité de service"],["Cisco IOS","diagnostic, logs, sauvegarde"],["Packet Tracer","maquette complète d'un site"]]},{"n":"Systèmes Windows","e":"🖥️","c":"#37496B","att":"Exploiter un domaine et automatiser le déploiement.","dom":[["Active Directory","forêts, sites, réplication, délégation"],["Les GPO","modèles, filtrage, préférences"],["Déploiement WDS","imager, déployer à grande échelle"],["DNS et DHCP","redondance, zones, options"],["Permissions NTFS","audit, conflits, bonnes pratiques"]]},{"n":"Linux","e":"🐧","c":"#9B5320","att":"Exploiter un serveur Linux en production.","dom":[["Les services","nginx, ssh, pare-feu local"],["Disques et LVM","RAID, quotas, croissance"],["Les journaux","rsyslog, journalctl, analyse"],["Les permissions","ACL, sudoers, durcissement"],["Automatisation","scripts d'exploitation, sauvegardes"]]},{"n":"Cybersécurité","e":"🛡️","c":"#C2185B","att":"Sécuriser une infrastructure et argumenter ses choix.","dom":[["Sécurité des systèmes","durcissement, moindre privilège, mises à jour"],["Les certificats","PKI, HTTPS, cycle de vie"],["La DMZ","architecture, règles, services exposés"],["Les attaques","scénarios, détection, réponse"],["Les ransomwares","plan de sauvegarde, PRA, reconstruction"],["Le VPN","site à site, nomade, authentification"]]},{"n":"Scripting","e":"⌨️","c":"#00796B","att":"Industrialiser l'administration.","dom":[["PowerShell","modules, AD, export de rapports"],["Bash","scripts robustes, gestion d'erreurs"],["Automatisation","inventaire, sauvegardes, supervision"]]},{"n":"Cloud & Supervision","e":"☁️","c":"#6D28D9","att":"Superviser et héberger : les compétences les plus demandées.","dom":[["Microsoft 365","comptes, licences, Exchange Online"],["Exchange Online","messagerie, antispam, archivage"],["Proxmox","clusters, sauvegardes, migration"],["La supervision","centrella, tableaux de bord, astreinte"],["SNMP","superviser les équipements réseau"]]},{"n":"Support & Parc","e":"🎧","c":"#8D6E63","att":"Améliorer le service et maîtriser le cycle de vie du matériel.","dom":[["GLPI","workflows, SLA, base de connaissances"],["Gestion de parc","inventaire automatisé, obsolescence"],["Green IT","reconditionnement, durée de vie, empreinte"],["Le support utilisateur","niveaux, escalade, satisfaction"]]},{"n":"Méthode & validation","e":"🎯","c":"#00838F","att":"Défendre son dossier et son projet devant le jury.","dom":[["Le dossier","structurer les preuves, synthétiser"],["L'oral du jury","5 minutes, puis questions"],["Le métier","se projeter, connaître les employeurs locaux"]]},{"n":"Anglais technique","e":"🇬🇧","c":"#B93A73","att":"Échanger à l'écrit avec un support ou un fournisseur.","dom":[["Le vocabulaire","incident, configuration, sécurité"],["Compréhension","tickets, documentation constructeur"]]}]}};
+const LEVELS = ["1re année","2e année"];
+const MORDER = ["Fondamentaux","Réseaux","Systèmes Windows","Linux","Cybersécurité","Scripting","Cloud & Supervision","Support & Parc","Méthode & validation","Anglais technique"];
+
+const $ = s => document.querySelector(s);
+const state = {lv:LEVELS[0], mat:"Tout", q:""};
+let seen = new Set(JSON.parse(localStorage.getItem("tsrstube_vus")||"[]"));
+const saveSeen = () => localStorage.setItem("tsrstube_vus", JSON.stringify([...seen]));
+
+function fmt(s){ if(!s) return ""; const m=Math.floor(s/60); const r=Math.round(s%60); return m+":"+String(r).padStart(2,"0"); }
+function matColor(m){ const d=document.querySelector('.matbtn[data-m="'+m+'"] .dot'); return d? d.style.background : "#16213C"; }
+
+/* ---- filtres niveau ---- */
+LEVELS.forEach(l=>{
+  const b=document.createElement("button");
+  b.className="lvbtn"; b.dataset.lv=l;
+  const p=PROG[l]||{};
+  b.innerHTML = l+"<small>"+(p.short||"cycle")+"</small>";
+  b.onclick=()=>{state.lv=l; state.mat="Tout"; render();};
+  $("#levels").appendChild(b);
+});
+const ball=document.createElement("button");
+ball.className="lvbtn"; ball.dataset.lv="Tout"; ball.innerHTML="TOUT<small>2 ans</small>";
+ball.onclick=()=>{state.lv="Tout"; state.mat="Tout"; render();};
+$("#levels").appendChild(ball);
+
+/* ---- filtres matière ---- */
+function buildMats(){
+  const mats = state.lv==="Tout" ? MORDER : (PROG[state.lv]? PROG[state.lv].matieres.map(x=>x.n) : []);
+  const box=$("#mats"); box.innerHTML="";
+  const mk=(n,label,color,icon)=>{
+    const b=document.createElement("button");
+    b.className="matbtn"+(state.mat===n?" on":""); b.dataset.m=n;
+    b.innerHTML='<span class="dot" style="background:'+color+'"></span>'+(icon?icon+" ":"")+label;
+    b.onclick=()=>{state.mat=n; render();};
+    box.appendChild(b);
+  };
+  mk("Tout","Tout","#16213C","");
+  mats.forEach(n=>{
+    const src = (PROG[state.lv]&&PROG[state.lv].matieres.find(x=>x.n===n)) || {c:"#16213C",e:""};
+    mk(n,n,src.c,src.e);
+  });
+}
+
+/* ---- rendu principal ---- */
+function render(){
+  buildMats();
+  document.querySelectorAll(".lvbtn").forEach(b=>b.classList.toggle("on",b.dataset.lv===state.lv));
+
+  const q = state.q.trim().toLowerCase();
+  let list = VIDEOS.filter(v=>{
+    if(state.lv!=="Tout" && !v.lv.includes(state.lv)) return false;
+    if(state.mat!=="Tout" && v.m!==state.mat) return false;
+    if(q){
+      const hay=(v.t+" "+v.c+" "+v.th+" "+v.m).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const title = state.lv==="Tout" ? "Tout le primaire" : state.lv;
+  $("#lvTitle").textContent = title;
+  const p = PROG[state.lv];
+  $("#lvSub").textContent = state.lv==="Tout"
+    ? "Toutes les vidéos, du CP au CM2. Filtre par matière pour réduire."
+    : (p? p.resume : "");
+
+  // progression
+  const tot = list.length, vus = list.filter(v=>seen.has(v.i)).length;
+  const pct = tot? Math.round(100*vus/tot):0;
+  $("#progTxt").textContent = vus+" / "+tot;
+  $("#progBar").style.width = pct+"%";
+  $("#seenPct").textContent = pct+" % vu";
+
+  const box=$("#list"); box.innerHTML="";
+  if(!list.length){
+    box.innerHTML='<div class="empty"><b>Aucune vidéo pour cette recherche.</b>Essaie un mot plus simple : « fractions », « eau », « accord ».</div>';
+    renderProgramme(); return;
+  }
+  const groups={};
+  list.forEach(v=>{ (groups[v.m]=groups[v.m]||[]).push(v); });
+  Object.keys(groups).sort((a,b)=>MORDER.indexOf(a)-MORDER.indexOf(b)).forEach(m=>{
+    const meta = (state.lv!=="Tout" && p && p.matieres.find(x=>x.n===m)) || {c:"#16213C",e:"•",att:""};
+    const sec=document.createElement("section"); sec.className="matsec";
+    sec.innerHTML='<header><div class="ico" style="background:'+meta.c+'">'+meta.e+'</div>'+
+      '<div><h3>'+m+'</h3>'+(meta.att?'<p class="att">'+meta.att+'</p>':'')+'</div>'+
+      '<div class="n">'+groups[m].length+' vidéo'+(groups[m].length>1?'s':'')+'</div></header>';
+    const g=document.createElement("div"); g.className="grid";
+    groups[m].forEach(v=>g.appendChild(card(v)));
+    sec.appendChild(g); box.appendChild(sec);
+  });
+  renderProgramme();
+}
+
+function card(v){
+  const el=document.createElement("article");
+  el.className="card"+(seen.has(v.i)?" seen":"");
+  el.innerHTML=
+    '<div class="thumb"><span class="ph">▶</span><img loading="lazy" src="https://i.ytimg.com/vi/'+v.i+'/mqdefault.jpg" alt="" onerror="this.style.opacity=0">'+
+      '<span class="dur">'+fmt(v.d)+'</span>'+
+      '<button class="seenbtn" title="Marquer comme vue">✓</button>'+
+      '<div class="play"><span>▶</span></div></div>'+
+    '<div class="body"><div class="thm">'+v.th+'</div><h4>'+v.t+'</h4>'+
+      '<div class="meta"><span class="ch">'+v.c+'</span><span class="lvls">'+v.lv.map(l=>'<i>'+l+'</i>').join("")+'</span></div></div>';
+  el.onclick=e=>{
+    if(e.target.classList.contains("seenbtn")){
+      e.stopPropagation();
+      seen.has(v.i)? seen.delete(v.i): seen.add(v.i);
+      saveSeen(); el.classList.toggle("seen", seen.has(v.i)); updateProg(); return;
+    }
+    openVideo(v);
+  };
+  return el;
+}
+
+function updateProg(){
+  const q=state.q.trim().toLowerCase();
+  const list=VIDEOS.filter(v=>(state.lv==="Tout"||v.lv.includes(state.lv))&&(state.mat==="Tout"||v.m===state.mat)&&
+    (!q||(v.t+" "+v.c+" "+v.th+" "+v.m).toLowerCase().includes(q)));
+  const vus=list.filter(v=>seen.has(v.i)).length;
+  $("#progTxt").textContent=vus+" / "+list.length;
+  const pct=list.length?Math.round(100*vus/list.length):0;
+  $("#progBar").style.width=pct+"%"; $("#seenPct").textContent=pct+" % vu";
+}
+
+/* ---- modal ---- */
+let current=null;
+function openVideo(v){
+  current=v;
+  $("#mTitle").textContent=v.t;
+  $("#mMeta").textContent=v.c+" · "+fmt(v.d)+" · "+v.th+" · "+v.lv.join(", ");
+  $("#mFrame").src="https://www.youtube-nocookie.com/embed/"+v.i+"?autoplay=1&rel=0&modestbranding=1";
+  $("#mLink").href="https://www.youtube.com/watch?v="+v.i;
+  $("#mSeen").classList.toggle("on",seen.has(v.i));
+  $("#mSeen").textContent = seen.has(v.i)? "✓ Vue" : "✓ Marquer comme vue";
+  $("#modal").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeVideo(){
+  $("#modal").classList.remove("open");
+  $("#mFrame").src="";
+  document.body.style.overflow="";
+  render();
+}
+$("#mClose").onclick=closeVideo;
+$("#modal").onclick=e=>{ if(e.target.id==="modal") closeVideo(); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&current) closeVideo(); });
+$("#mSeen").onclick=()=>{
+  if(!current) return;
+  seen.has(current.i)? seen.delete(current.i): seen.add(current.i);
+  saveSeen();
+  $("#mSeen").classList.toggle("on",seen.has(current.i));
+  $("#mSeen").textContent = seen.has(current.i)? "✓ Vue" : "✓ Marquer comme vue";
+};
+
+/* ---- programme ---- */
+function renderProgramme(){
+  const p=PROG[state.lv];
+  if(!p){ $("#progH").textContent="Le TSRS, les deux années"; $("#progBody").innerHTML=
+    '<div class="chans"><div class="chan"><b>Choisis un niveau</b><span>Le programme s\'affiche niveau par niveau : 1re année ou 2e année.</span></div></div>'; return; }
+  $("#progH").textContent="Ce qu'il faut maîtriser en fin de "+state.lv;
+  let h='<table class="progtable"><thead><tr><th style="width:150px">Matière</th><th>Domaines</th><th style="width:32%">Ce qu\'on attend</th></tr></thead><tbody>';
+  p.matieres.forEach(m=>{
+    h+='<tr><td class="m"><span class="pill"><span style="color:'+m.c+'">●</span>'+m.n+'</span></td><td><ul>'+
+       m.dom.map(d=>'<li><b>'+d[0]+'</b> — '+d[1]+'</li>').join("")+'</ul></td><td>'+m.att+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  $("#progBody").innerHTML=h;
+}
+
+/* ---- chaînes ---- */
+const CH=[["IT-Connect", "La référence francophone : réseau, Windows Server, sécurité. Cours longs, structurés, très proches du terrain.", "https://www.youtube.com/@IT-Connect"], ["Formip", "Certifications IT : OSI, TCP/IP, Active Directory, préparation CCNA. Pédagogie très claire pour débuter.", "https://www.youtube.com/@Formip"], ["Cookie connecté", "Réseau et sécurité expliqués en quelques minutes, sans jargon. Parfait pour réviser vite.", "https://www.youtube.com/results?search_query=Cookie%20connect%C3%A9%20tutoriel"], ["Finger In The Net", "Binaire, adressage, calculs de sous-réseaux : les bases qui bloquent tout le monde, expliquées simplement.", "https://www.youtube.com/@fingerinthenet"], ["InfraNerdFR", "Active Directory et infrastructure Windows en profondeur, pour aller au-delà du cours.", "https://www.youtube.com/@InfraNerdFR"], ["Julien Code", "Scripting et automatisation : bash, PowerShell, Python appliqués à l'administration.", "https://www.youtube.com/@JulienCode"], ["eazytraining", "Docker, conteneurs et cloud : les compétences qui manquent le plus aux jeunes techniciens.", "https://www.youtube.com/results?search_query=eazytraining%20tutoriel"], ["WayToLearnX", "Modèle OSI et notions réseau en format court, avec des schémas propres.", "https://www.youtube.com/@WayToLearnX"], ["Dirtech IT", "Tutoriels Windows Server pas à pas : DHCP, DNS, domaine. À suivre en même temps qu'on manipule.", "https://www.youtube.com/@DirtechIT"], ["Numelion IT", "Administration Windows au quotidien : comptes, partages, postes de travail.", "https://www.youtube.com/@numelionIT"]];
+$("#chans").innerHTML=CH.map(c=>'<a class="chan" href="'+c[2]+'" target="_blank" rel="noopener"><em>chaîne</em><b>'+c[0]+'</b><span>'+c[1]+'</span></a>').join("");
+
+/* ---- recherche ---- */
+let tm;
+$("#q").addEventListener("input",e=>{
+  clearTimeout(tm);
+  tm=setTimeout(()=>{ state.q=e.target.value; render(); },140);
+});
+
+/* ---- init ---- */
+$("#sVid").textContent = VIDEOS.length;
+$("#sCh").textContent = new Set(VIDEOS.map(v=>v.c)).size;
+$("#sTh").textContent = new Set(VIDEOS.map(v=>v.m+"|"+v.th)).size;
+render();
+</script>
+</body>
+</html>
